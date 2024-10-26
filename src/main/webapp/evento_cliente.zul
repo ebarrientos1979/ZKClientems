@@ -1,0 +1,37 @@
+<zk>
+	<grid xmlns:c="client">
+		<rows>
+			<row>
+				<label value="Texto 1: "/>
+				<textbox
+					id="text1"
+					c:onFocus="jq(this.$f('help1')).fadeIn()"
+					c:onBlur="jq(this.$f('help1')).fadeOut()"
+					c:onChange="jq(this.$f('etiqueta')).text( jq(this.$f('text1')).val() )"
+				/>
+				<label id="help1" visible="false"
+					value="Esta es la ayuda al texo 1"
+					/>
+			</row>
+			<row>
+				<label value="Texto 2: "/>
+				<textbox
+					id="text2"
+					c:onFocus="jq(this.$f('help2')).fadeIn()"
+					c:onBlur="jq(this.$f('help2')).fadeOut()"
+				/>
+				<label id="help2" visible="false"
+					value="Esta es la ayuda del texto 2"
+				/>
+			</row>
+			<row>
+				<label id="etiqueta" value="Valor Inicial"/>
+			</row>
+			<row>
+				<button label="Mostrart Texto"
+					c:onClick="jq.alert( jq(this.$f('text1')).val() + ' ' + jq(this.$f('text2')).val() )"
+				 />
+			</row>
+		</rows>
+	</grid>
+</zk>

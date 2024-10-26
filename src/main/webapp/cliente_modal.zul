@@ -1,0 +1,53 @@
+<window id="modalDialog" title="Formulario Cliente" border="normal" width="460px"
+	position="center, center" closable="true"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('pe.edu.nh.binding.ClienteViewModel')"
+	>
+	<grid>
+		<rows>
+			<row>
+				<label value="Nombre" width="100px" />
+				<hlayout>
+					<textbox value="@load(vm.selectedCliente.nombre)"  
+						width="150px" tabindex="1" />
+				</hlayout>
+			</row>
+			<row>
+				<label value="Ap.Paterno" width="100px" />
+				<hlayout>
+					<textbox value="@load(vm.selectedCliente.apellidoPaterno)" 
+						width="150px" tabindex="2" />
+				</hlayout>
+			</row>
+			<row>
+				<label value="Ap.Materno" width="100px" />
+				<hlayout>
+					<textbox value="@load(vm.selectedCliente.apellidoMaterno)"
+						width="150px" tabindex="3" />
+				</hlayout>
+			</row>
+			<row>
+				<label value="Edad" width="100px" />
+				<hlayout>
+					<textbox value="@load(vm.selectedCliente.edad)"
+						width="150px" tabindex="4" />
+				</hlayout>
+			</row>
+			<row>
+				<label value="Direccion" width="100px" />
+				<hlayout>
+					<textbox value="@load(vm.selectedCliente.direccion)"
+						width="150px" tabindex="5" />
+				</hlayout>
+			</row>
+			
+			<row>
+				<button id="grabar" hflex="1" label="Grabar" 
+					onClick="@command('grabar', selectedCliente=selectedCliente)"/>
+				<button id="cerrar" hflex="1" label ="Cerrar" 
+					onClick="@command('cerrarModal')"/>
+			</row>
+			
+		</rows>
+	</grid>
+</window>

@@ -1,0 +1,11 @@
+.red-button {
+    background-color: red;
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+.red-button:hover {
+    background-color: darkred; /* Cambiar color al pasar el mouse */
+}
