@@ -9,7 +9,7 @@ import org.zkoss.zul.Window;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class CalculatorController extends GenericForwardComposer<Window> {
-
+	
     @Wire
     private Textbox resultTextbox;
 
