@@ -19,18 +19,24 @@ import org.zkoss.zul.Window;
 public class ClienteViewModel {	
 	private Cliente miSeleccionado;
 	private Cliente selected;
+	private Boolean modalAbierto = Boolean.FALSE; 
 	private List<Cliente> clientes = new ArrayList<Cliente>(new ClienteData().getClientes());
 	
 	@Init
-	public void init(@ExecutionArgParam("cliente") Cliente cliente) {
+	public void init(@ExecutionArgParam("cliente") Cliente cliente) {		
 		this.selected = cliente;		
 	}
 	
+	
 	public Cliente getClienteSeleccionado() {
-		miSeleccionado = new Cliente();
-		ModelMapperConfig.copyProperties(selected, miSeleccionado);
+		if (Objects.nonNull(selected) && Boolean.FALSE.equals(modalAbierto)) {
+			miSeleccionado = new Cliente();
+			ModelMapperConfig.copyProperties(selected, miSeleccionado);
+		}
+		
+		modalAbierto = Boolean.TRUE;
 		return miSeleccionado;
-	}
+	} 
 	
 		
 	public List<Cliente> getClienteList(){
@@ -49,8 +55,7 @@ public class ClienteViewModel {
 	
 	@Command
 	public void grabar() {
-		Map<String, Object> parametro = new HashMap<>();
-		System.out.println(miSeleccionado.toString());
+		Map<String, Object> parametro = new HashMap<>();		
 		parametro.put("cliente", miSeleccionado);
 		BindUtils.postGlobalCommand(null, null, "refrescarListaClientes", parametro);
 		this.cerrarModal();
@@ -60,18 +65,21 @@ public class ClienteViewModel {
 	public void cerrarModal() {
 		Component window = Executions.getCurrent().
 					getDesktop().getFirstPage().getFellow("modalDialog");
+		
 		window.detach();
 	}
 	
 	@Command	
-	public void seleccionarCliente( @BindingParam("cliente") Cliente cliente ) {		
+	public void seleccionarCliente( @BindingParam("cliente") Cliente cliente ) {
+		
 		this.selected = cliente;
 		
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("cliente", cliente);
 		
+		
 		Window window = (Window) Executions.
-							createComponents("/cliente_modal.zul", null, parametros);
+							createComponents("/cliente_modal.zul", null, parametros);		
 		
 		window.doModal();
 	}
