@@ -20,7 +20,7 @@
 			<div class="form-group row">
 				<label value="Paterno" class="col-sm-4 col-form-label" />
 				<div class="col-sm-8">
-					<textbox id="paterno" value="@bind(vm.clienteSeleccionado.apellidoPaterno)"
+					<textbox id="paterno" value="@bind(vm.clienteSeleccionado.apePaterno)"
 						placeholder="Apellido Paterno"
 						class="form-control" width="100%" />
 				</div>
@@ -29,16 +29,16 @@
 			<div class="form-group row">
 				<label value="Materno" class="col-sm-4 col-form-label" />
 				<div class="col-sm-8">
-					<textbox id="materno" value="@bind(vm.clienteSeleccionado.apellidoMaterno)"
+					<textbox id="materno" value="@bind(vm.clienteSeleccionado.apeMaterno)"
 						placeholder="Apellido Materno"
 						class="form-control" width="100%" />
 				</div>
 			</div>
 			
 			<div class="form-group row">
-				<label value="Edad" class="col-sm-4 col-form-label" />
+				<label value="Telefono" class="col-sm-4 col-form-label" />
 				<div class="col-sm-8">
-					<textbox id="edad" value="@bind(vm.clienteSeleccionado.edad)"
+					<textbox id="telefono" value="@bind(vm.clienteSeleccionado.telefono)"
 						placeholder="Edad"
 						class="form-control" width="100%" />
 				</div>

@@ -1,4 +1,8 @@
-C:\Users\edwin\Documents\GitHub\BindingZK\src\main\java\calculadora\controller\CalculatorController.java
-C:\Users\edwin\Documents\GitHub\BindingZK\src\main\java\pe\edu\nh\binding\ClienteViewModel.java
-C:\Users\edwin\Documents\GitHub\BindingZK\src\main\java\pe\edu\nh\ClienteData.java
-C:\Users\edwin\Documents\GitHub\BindingZK\src\main\java\pe\edu\nh\data\Cliente.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\configuration\ModelMapperConfig.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\controller\ClienteController.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\dto\ClienteDTO.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\model\Cliente.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\model\Respuesta.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\MsClientesApplication.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\repository\ClienteRepository.java
+C:\msClientes-main\src\main\java\pe\edu\nh\msClientes\service\ClienteService.java

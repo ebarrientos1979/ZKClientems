@@ -3,6 +3,9 @@ package pe.edu.nh.binding;
 import pe.edu.nh.ClienteData;
 import pe.edu.nh.ModelMapperConfig;
 import pe.edu.nh.data.Cliente;
+import pe.edu.nh.dto.ClienteDTO;
+import pe.edu.nh.rest.RestCliente;
+
 import java.util.*;
 
 import org.zkoss.bind.BindUtils;
@@ -17,20 +20,30 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Window;
 
 public class ClienteViewModel {	
-	private Cliente miSeleccionado;
-	private Cliente selected;
-	private Boolean modalAbierto = Boolean.FALSE; 
-	private List<Cliente> clientes = new ArrayList<Cliente>(new ClienteData().getClientes());
+	private ClienteDTO miSeleccionado;
+	private ClienteDTO selected;
+	private Boolean modalAbierto = Boolean.FALSE;
+	private List<ClienteDTO> listaClientes;
+
 	
 	@Init
-	public void init(@ExecutionArgParam("cliente") Cliente cliente) {		
-		this.selected = cliente;		
+	public void init(@ExecutionArgParam("cliente") ClienteDTO cliente) {	
+		
+		this.selected = cliente;
+		RestCliente rc = new RestCliente();
+		try {
+			listaClientes = rc.ListarClientes();			
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	
-	public Cliente getClienteSeleccionado() {
+	
+	public ClienteDTO getClienteSeleccionado() {
 		if (Objects.nonNull(selected) && Boolean.FALSE.equals(modalAbierto)) {
-			miSeleccionado = new Cliente();
+			miSeleccionado = new ClienteDTO();
+			
 			ModelMapperConfig.copyProperties(selected, miSeleccionado);
 		}
 		
@@ -39,17 +52,17 @@ public class ClienteViewModel {
 	} 
 	
 		
-	public List<Cliente> getClienteList(){
-		return clientes;
+	public List<ClienteDTO> getClienteList(){
+		return listaClientes;
 	}
 	
-	public Cliente getSelectedCliente() {
+	public ClienteDTO getSelectedCliente() {
 		return this.selected;
 	}
 	
 	@GlobalCommand
 	@NotifyChange("clienteList")
-	public void refrescarListaClientes(@BindingParam("cliente") Cliente cliente) {
+	public void refrescarListaClientes(@BindingParam("cliente") ClienteDTO cliente) {
 		ModelMapperConfig.copyProperties(cliente, this.selected);
 	}
 	
@@ -70,7 +83,7 @@ public class ClienteViewModel {
 	}
 	
 	@Command	
-	public void seleccionarCliente( @BindingParam("cliente") Cliente cliente ) {
+	public void seleccionarCliente( @BindingParam("cliente") ClienteDTO cliente ) {
 		
 		this.selected = cliente;
 		

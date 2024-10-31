@@ -11,7 +11,7 @@
 				<column label="Nombre" width="20%" align="center"/>
 				<column label="Ape Paterno" width="25%" align="center"/>
 				<column label="Ape Materno" width="25%" align="center"/>
-				<column label="Edad" width="10%" align="center"/>
+				<column label="Telefono" width="10%" align="center"/>
 				<column label="Direccion" width="20%" align="center"/>
 			</columns>
 			
@@ -19,9 +19,9 @@
 				<template name="model" var="cliente">
 					<row onDoubleClick='@command("seleccionarCliente", cliente=cliente)'>				
 						<label value="@load(cliente.nombre)"></label>
-						<label value="@load(cliente.apellidoPaterno)"></label>
-						<label value="@load(cliente.apellidoMaterno)"></label>
-						<label value="@load(cliente.edad)"></label>
+						<label value="@load(cliente.apePaterno)"></label>
+						<label value="@load(cliente.apeMaterno)"></label>
+						<label value="@load(cliente.telefono)"></label>
 						<label value="@load(cliente.direccion)"></label>
 					</row>					
 				</template>

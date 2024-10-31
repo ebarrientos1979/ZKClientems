@@ -1,97 +1,37 @@
-<window title="Calculadora ZK" border="normal" width="300px" height="400px">
-	<style><![CDATA[ 
-        .red-button {
-            background-color: red;
-            color: white; /* Texto blanco */
-            border: none; /* Sin borde */
-            padding: 10px 15px; /* Espaciado interno */
-            cursor: pointer; /* Cambiar el cursor al pasar por encima */
-        }
-
-        .red-button:hover {
-            background-color: darkred; /* Cambiar color al pasar el mouse */
-        }
-        ]]>
-    </style>
-    <vlayout>
-        <textbox id="resultTextbox" readonly="true" width="100%" />
-
-        <hbox>
-            <button label="1" onClick='onNumberClick("1")'/>
-            <button label="2" onClick='onNumberClick("2")'/>
-            <button label="3" onClick='onNumberClick("3")'/>
-            <button class="red-button" label="+" onClick='onOperationClick("+")'/>
-        </hbox>
-        <hbox>
-            <button label="4" onClick='onNumberClick("4")'/>
-            <button label="5" onClick='onNumberClick("5")'/>
-            <button label="6" onClick='onNumberClick("6")'/>
-            <button class="red-button" label="-" onClick='onOperationClick("-")'/>
-        </hbox>
-        <hbox>
-            <button label="7" onClick='onNumberClick("7")'/>
-            <button label="8" onClick='onNumberClick("8")'/>
-            <button label="9" onClick='onNumberClick("9")'/>
-            <button class="red-button" label="*" onClick='onOperationClick("*")'/>
-        </hbox>
-        <hbox>
-            <button label="0" onClick='onNumberClick("0")'/>
-            <button label="C" onClick="onClear()"/>
-            <button label="=" onClick="onCalculate()"/>
-            <button class="red-button" label="/" onClick='onOperationClick("/")'/>
-        </hbox>
-    </vlayout>
-
-    <zscript><![CDATA[    
-    
-        StringBuilder currentInput = new StringBuilder();
-        String lastOperation = "";
-        double lastValue = 0;
-
-        void onNumberClick(String number) {
-            currentInput.append(number);
-            resultTextbox.setValue(currentInput.toString());
-        }
-
-        void onOperationClick(String operation) {
-            if (currentInput.length() > 0) {
-                lastValue = Double.parseDouble(currentInput.toString());
-                lastOperation = operation;
-                currentInput.setLength(0);
-            }
-        }
-
-        void onCalculate() {
-            if (currentInput.length() > 0 && !lastOperation.isEmpty()) {
-                double currentValue = Double.parseDouble(currentInput.toString());
-                double result = 0;
-
-                switch (lastOperation) {
-                    case "+":
-                        result = lastValue + currentValue;
-                        break;
-                    case "-":
-                        result = lastValue - currentValue;
-                        break;
-                    case "*":
-                        result = lastValue * currentValue;
-                        break;
-                    case "/":
-                        result = lastValue / currentValue;
-                        break;
-                }
-                resultTextbox.setValue(String.valueOf(result));
-                currentInput.setLength(0); // Limpiar entrada después del cálculo
-                lastOperation = ""; // Limpiar última operación
-            }
-        }
-
-        void onClear() {
-            currentInput.setLength(0);
-            resultTextbox.setValue("");
-            lastOperation = "";
-            lastValue = 0;
-        }
-        ]]>
-    </zscript>
-</window>
+<zk id="modalDialog" title="Formulario Cliente" border="normal" width="460px"
+	position="center, center" closable="true"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('pe.edu.nh.binding.SpaViewModel')"
+	xmlns:n="native">
+	    <hlayout spacing="0">
+	        <menubar id="menubar" orient="vertical" autodrop="true">
+	            <menu label="Clientes">
+	            <menupopup>
+	                <menuitem label="Nuevo" onClick="@command('navigate', page='/cliente_modal.zul')" />
+					<menuitem label="Listar" onClick="@command('navigate', page='/cliente.zul')" />
+	                <menuitem label="Eliminar" onClick="alert(self.label)" />
+	            </menupopup>
+	        	</menu>
+		        <menu label="Productos">
+		            <menupopup>
+		                <menuitem label="Nuevo" onClick="alert(self.label)" />
+		                <menuitem label="listar" onClick="alert(self.label)" />
+		                <menuitem label="Reportes" onClick="alert(self.label)" />                
+		            </menupopup>
+		        </menu>        
+	        </menubar>
+	 
+	        <div id="container" sclass="container" width="100%">
+	            <vlayout id="product_list" width="100%">
+	                <n:h1 class="mo_head">Top Sales</n:h1>
+	                <separator bar="true"></separator>
+	                <hlayout spacing="10px">
+	                	<div id="content" width="100%" height="100%">
+	            			<include id="dynamicContent" src="/cliente.zul"/>
+	        			</div>
+	                </hlayout>
+	 
+	            </vlayout>
+	        </div>
+	    </hlayout>
+</zk>
